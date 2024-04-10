@@ -1,25 +1,22 @@
-"use strict";
+'use strict';
+
 var page = module.superModule;
-var server = require("server");
+var server = require('server');
 
 server.extend(page);
- server.append("Show", function (req, res, next){   
-    var recentProductHelper= require("*/cartridge/scripts/helpers/recentProductHelper");
-    var currentCustomer=req.currentCustomer.raw;
-    var pid=req.querystring.pid;
-var config ={
+server.append('Show', function (req, res, next) {
+  // code for recently visited Products
+  var recentProductHelper = require('*/cartridge/scripts/helpers/recentProductHelper');
+  var currentCustomer = req.currentCustomer.raw;
+  var pid = req.querystring.pid;
+  var config = {
     qty: 1,
-    type: 100,
-};
-var productList= recentProductHelper.getRecentlyViewedProductList( 
-        currentCustomer,
-        pid,
-        config.type
-);
-var listProducts = productList.items.iterator(); 
-var URLUtils = require("dw/web/URLUtils"); 
-res.setViewData({listProducts:listProducts});
-next();
+    type: 100
+  };
+  var productList = recentProductHelper.getRecentlyViewedProductList(currentCustomer, pid, config.type);
+  var listProducts = productList.items.iterator();
 
+  res.setViewData({ listProducts: listProducts });
+  next();
 });
 module.exports = server.exports();
