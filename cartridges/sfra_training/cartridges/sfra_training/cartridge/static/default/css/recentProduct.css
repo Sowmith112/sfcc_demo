@@ -1,0 +1,36 @@
+.carousel {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .carousel-inner {
+    position: relative;
+  }
+  
+  .carousel-item {
+    text-align: center;
+  }
+  
+  .carousel-item img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 5%;
+    color: #000;
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    font-size: 24px;
+  }
+  
+  .carousel-control-prev {
+    left: 0;
+  }
+  
+  .carousel-control-next {
+    right: 0;
+  }

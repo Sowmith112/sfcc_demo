@@ -1,0 +1,16 @@
+ <isdecorate template="common/layout/page">
+ 
+ <isif condition="${!empty basket}">
+    <iselse>
+        <isloop items="${pdict.basket.getProductLineItems()}" var="productLineItem" status="loopstate">
+         <iscomment> Count ${loopstate.count}  Index ${loopstate.index} ${productLineItem.product.name}<br/>
+        </isloop> </iscomment>
+         ${Resource.msg('product.name', 'cart', null)} <isinclude template="cart/productCard/cartProductCardHeader" />
+        ${Resource.msg('product.price', 'cart', null)} <isinclude template="cart/productCard/cartProductCardProductPrice" />
+        ${Resource.msg('product.availability', 'cart', null)} <isinclude template="cart/productCard/cartProductCardAvailability" />
+    </isloop>
+    </iselse>
+</isif>
+</isdecorate>
+
+

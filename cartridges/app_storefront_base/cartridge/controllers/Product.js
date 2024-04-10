@@ -38,7 +38,7 @@ server.get('Show', cache.applyPromotionSensitiveCache, consentTracking.consent, 
     var productType = showProductPageHelperResult.product.productType;
     if (!showProductPageHelperResult.product.online && productType !== 'set' && productType !== 'bundle') {
         res.setStatusCode(404);
-        res.render('error/notFound');
+        res.render('error/notFound');   
     } else {
         var pageLookupResult = productHelper.getPageDesignerProductPage(showProductPageHelperResult.product);
 
