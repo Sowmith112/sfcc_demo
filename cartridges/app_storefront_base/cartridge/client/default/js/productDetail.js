@@ -5,3 +5,5 @@ var processInclude = require('./util');
 $(document).ready(function () {
     processInclude(require('./product/detail'));
 });
+
+

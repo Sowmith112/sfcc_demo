@@ -1,0 +1,121 @@
+<div class="home-main homepage">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+          integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css"
+          integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+          crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+            integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+            integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <isslot id="Home-MainPage" description="Main home page slot." context="global" />
+</div>
+
+<div class="description-and-detail">
+    <!-- Tab Navigation -->
+    <ul class="nav nav-tabs nav-fill" role="tablist">
+        <isif condition="${product.attributes && product.attributes.length}">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link <isif condition="${product.attributes && product.attributes.length}">active</isif>"
+                   role="tab"
+                   data-toggle="tab"
+                   href="#attributes"
+                   aria-controls="attributes"
+                   aria-selected="true">
+                    <i class="fas fa-info-circle"></i> Attributes
+                </a>
+            </li>
+        </isif>
+
+        <isif condition="${product.shortDescription}">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link <isif condition="${!(product.attributes && product.attributes.length)}">active</isif>"
+                   role="tab"
+                   data-toggle="tab"
+                   href="#description"
+                   aria-controls="description"
+                   aria-selected="false">
+                    <i class="fas fa-file-alt"></i> Description
+                </a>
+            </li>
+        </isif>
+
+        <isif condition="${product.longDescription}">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link"
+                   role="tab"
+                   data-toggle="tab"
+                   href="#details"
+                   aria-controls="details"
+                   aria-selected="false">
+                    <i class="fas fa-book"></i> Details
+                </a>
+            </li>
+        </isif>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content d-flex flex-column justify-content-center">
+        <isif condition="${product.attributes && product.attributes.length}">
+            <div class="tab-pane fade show active" id="attributes" role="tabpanel" aria-labelledby="attributes-tab">
+                <div class="row product-attributes collapsible-xs">
+                    <isinclude template="product/components/attributes" />
+                </div>
+            </div>
+        </isif>
+
+        <isif condition="${product.shortDescription}">
+            <div class="tab-pane fade show <isif condition="${!(product.attributes && product.attributes.length)}">active</isif>"
+                 id="description"
+                 role="tabpanel"
+                 aria-labelledby="description-tab">
+                <div class="row">
+                    <div class="col text-center"> 
+                        <isinclude template="product/components/description" />
+                    </div>
+                </div>
+            </div>
+        </isif>
+
+        <isif condition="${product.longDescription}">
+            <div class="tab-pane fade"
+                 id="details"
+                 role="tabpanel"
+                 aria-labelledby="details-tab">
+                <div class="row">
+                    <div class="col text-center"> 
+                        <isinclude template="product/components/details" />
+                    </div>
+                </div>
+            </div>
+        </isif>
+    </div>
+</div>
+
+<iscomment> <script>
+$(document).ready(function () {
+    $('.nav-tabs a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+    // Activate the default tab based on content
+    if ($('.nav-link.active').length === 0) {
+        var defaultTab = '#attributes';
+        if (!$('#attributes').hasClass('active')) {
+            defaultTab = '#description';
+        }
+        $(defaultTab).tab('show');
+    }
+});
+</script> </iscomment>
+

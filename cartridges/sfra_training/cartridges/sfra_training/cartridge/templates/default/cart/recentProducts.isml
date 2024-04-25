@@ -1,38 +1,141 @@
-<isscript>
-assests.addJS('/js/recentProduct.js');
-assests.addCss('/css/recentProduct.css');
-</isscript>
-<isif condition="${pdict.allProductDetails.length > 0}">
-  <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
-     <h2>${Resource.msg('label.veiw','common',null)}&nbsp&nbsp<b>${Resource.msg('label.product.recent','common',null)}</b></h2>
-	 <div class="carousel-inner">
-	  <isloop items ="${pdic.allProductDetails}" var="recentProduct">
-	     <div class="carousel-item">
-		 <a style="color:blue" href="${URLUtils.url('Product-Show','pid',recentProduct.id)}">
-		 <div class="card">
-		 <div class="img-wrapper"><img src="$(recentProduct.images.large[0].absURL}"
-		  class="d-block img-responsive" alt="${allProductDetail.image.large[0].absURL}"
-		  title="${order.firstLineItem.title}"></div>
-		  <div class="card-body">
-		  <p class="card-text">${Resource.msg('label.product.name','common',null)}
-		  <isprint value="${recentProduct.productName}"/ >
-		  
-		 </p>
-       </div>
-	   </div>
-	  </a>
+<div class="home-main homepage">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+		integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css"
+		integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+		integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+		integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<isslot id="Home-MainPage" description="Main home page slot." context="global" />
 </div>
-</isloop>	
-</div>
+ <style>
+    /* Style for carousel items */
+    .owl-carousel .item {
+        margin: 0 10px;
+        border-radius: 10px;
+        /* overflow: hidden; */
+    }
 
-<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
- data-bs-slide="prev">
-<span class="carousel-control-prev-icon" aria-hidden="true"> <i class="fa fa-angle-left"></i></span> 
-</button>
-<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-data-bs-slide="next">
-<span class="carousel-control-next-icon" aria-hidden=""> <i class="fa fa-angle-right"></i></span> </button>
+    /* Style for carousel images */
+    .owl-carousel .item img {
+        width: 200px !important;
+        height: 250px !important; /* Set a fixed height for consistency */
+        /* object-fit: cover; Ensure images cover the entire container */
+    }
 
-</div>
+    /* Style for carousel text */
+    .owl-carousel .item h3 {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333; /* Darken text color */
+    }
 
-</isif>  
+    /* Style for product details */
+    .owl-carousel .item span {
+        display: block;
+        margin-top: 5px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background-color: #6c757d; /* Change background color */
+        color: #fff; /* Text color */
+    }
+         /* Style for product details within anchor tags */
+    .owl-carousel .item a {
+        text-decoration: none; /* Remove underline from anchor tags */
+        color: inherit; /* Inherit color from parent element */
+    }
+
+    /* Style for product details */
+    .owl-carousel .item a h3 {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333; /* Darken text color */
+    }
+
+    /* Style for product details spans */
+    .owl-carousel .item a span {
+        display: block;
+        margin-top: 5px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background-color: #6c757d; /* Change background color */
+        color: #fff; /* Text color */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 767px) {
+        .owl-carousel .item img {
+            height: 200px; /* Reduce image height for smaller screens */
+        }
+
+        .owl-carousel .item h3 {
+            font-size: 16px; /* Decrease font size for smaller screens */
+        }
+    }
+</style> 
+
+
+
+<isif condition="${pdict.allProductDetails != null && pdict.allProductDetails.length > 0}">
+	<h1 class="text-center">Recently Visited Products..</h1>
+	<div class="owl-carousel owl-theme">
+		<isloop items="${pdict.allProductDetails}" var="value" status="loopstatus">
+			<div class="item">
+				<a href="${URLUtils.url('Product-Show', 'pid', value.id)}">
+				<img class="d-block w-100 img-fluid" src="${value.images.large[0].absURL}" alt="First slide">
+				<h3>Product Name :<span class="bg-success">${value.productName}</span></h3>
+				<h3>Product ID :<span class="bg-success">${value.id}</span></h3>
+				<h3>Product Type :<span class="bg-success">${value.productType}</span></h3>
+			</div>
+		</isloop>
+	</div>
+</isif>
+<script>
+// $('.owl-carousel').owlCarousel({
+//     loop:true,
+//     margin:10,
+//     nav:true,
+    
+//     responsive:{
+//         0:{
+//             items:1
+//         },
+//         600:{
+//             items:3
+//         },
+//         1000:{
+//             items:2
+//         }
+//     }
+// })
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    navText: ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
+    responsive:{
+        0:{
+            items:1
+        },
+        1200:{
+            items:3
+        },
+        2400:{
+            items:2
+        }
+    }
+})
+
+</script>

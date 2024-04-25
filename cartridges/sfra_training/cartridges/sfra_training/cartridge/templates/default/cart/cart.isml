@@ -89,6 +89,7 @@
 
         <isinclude template="cart/cartRemoveCouponModal"/>
     </isif>
+    <hr class="no-margin-top">
          <div class="container">
         <h1 class="page-title">${Resource.msg('title.recommendation','cart',null)}</h1>
         <div class="row cart-header">
@@ -97,22 +98,25 @@
                     ${Resource.msg('link.continue.shopping','cart',null)}
                 </a> </iscomment>
             </div>
+            
             <iscomment> <div class="col-sm-3 text-center">
                 <h2 class="number-of-items">${Resource.msgf('label.number.items.in.cart','cart', null, pdict.numItems)}</h2>
             </div> </iscomment>
-            <div class="col-sm-5 text-right hidden-xs-down">
+            <iscomment> <div class="col-sm-5 text-right hidden-xs-down">
                 <div>
                     <span>${Resource.msg('info.need.help','cart',null)}</span>
                     <span><a class="help-phone-number" href="tel:${Resource.msg('info.phone.number','common',null)}">${Resource.msg('info.phone.number','common',null)}</a></span>
                 </div>
-            </div>
+            </div> </iscomment>
         </div>
-        <hr class="no-margin-top">
+        
     </div> 
-    <div class="container">
+    
         <isslot id="cart-recommendations-m" description="Recommended products" context="global" />
     </div>
+    <div class="container">
+ <isinclude template="cart/recentProducts"/>
+</div>
 
-<isinclude template="cart/recentProducts"/>
 
 </isdecorate>

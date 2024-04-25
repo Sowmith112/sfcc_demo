@@ -26,7 +26,7 @@
     "proxyquire": "1.7.4",
     "sass": "^1.69.7",
     "sass-loader": "^13.3.2",
-    "sgmf-scripts": "^2.0.0",
+    "sgmf-scripts": "^3.0.0",
     "sinon": "^17.0.1",
     "stylelint": "^15.4.0",
     "stylelint-config-standard-scss": "^10.0.0",
@@ -39,7 +39,10 @@
   "dependencies": {
     "sfra": "file:.."
   },
-  "hooks":{
+  "hooks": {
     "hooks": "./hooks.json"
+  },
+  "paths": {
+    "base": "../app_storefront_base/"
   }
 }
